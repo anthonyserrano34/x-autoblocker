@@ -29,10 +29,13 @@ const itemVariants = {
 
 export default function AutoblockerExplainer() {
   const [token, setToken] = useState('')
+  const [username, setUsername] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log('Token soumis:', token)
+	console.log('Username soumis:', username)
+	setUsername('')
     setToken('')
   }
 
@@ -96,12 +99,26 @@ export default function AutoblockerExplainer() {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
+                <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
+                  Username Twitter
+                </label>
+                <Input
+                  id="username"
+                  type="text"
+                  placeholder="Entrez votre pseudo Twitter"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                  className="w-full"
+                />
+              </div>
+              <div>
                 <label htmlFor="token" className="block text-sm font-medium text-gray-700 mb-1">
                   Token Twitter
                 </label>
                 <Input
                   id="token"
-                  type="text"
+                  type="password"
                   placeholder="Entrez votre token Twitter"
                   value={token}
                   onChange={(e) => setToken(e.target.value)}
@@ -109,9 +126,11 @@ export default function AutoblockerExplainer() {
                   className="w-full"
                 />
               </div>
-              <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white">
+			  <a href='/dashboard'>
+              <Button className="w-full mt-2 bg-blue-500 hover:bg-blue-600 text-white">
                 Activer l'Auto Blocker
               </Button>
+			  </a>
             </form>
             <p className="mt-4 text-sm text-gray-600">
               En inscrivant votre compte, vous autorisez l'Auto Blocker à surveiller vos mentions et à les analyser pour détecter les contenus négatifs.

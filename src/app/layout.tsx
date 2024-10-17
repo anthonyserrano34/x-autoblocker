@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Button } from "@/components/ui/button";
 import { Twitter } from "lucide-react";
+import { AuthProvider } from './contexts/AuthContext'
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -26,6 +27,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
+		<AuthProvider>
 		<html lang="en">
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -51,5 +53,6 @@ export default function RootLayout({
 				</div>
 			</body>
 		</html>
+		</AuthProvider>
 	);
 }
